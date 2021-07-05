@@ -8,8 +8,11 @@ import os
 import pandas as pd
 import re
 import tweepy
-import config
 
+try:
+    import config
+except ImportError:
+    config = None
 class TwitterAPI:
 
     def __init__(self, consumer_key: str, consumer_secret: str):
