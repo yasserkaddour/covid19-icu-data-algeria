@@ -111,7 +111,6 @@ class Algeria(TwitterCollectorBase):
             if match and match2:
                 dt_match = re.search(r"(\d{1,2})\s*([ء-ي]+)\s*(202\d)", tweet.full_text)
                 dt = dt_match.group(3)+"-"+arabicMonthToNum(dt_match.group(2))+"-"+dt_match.group(1)
-                print(dt)
                 if self.stop_search(dt):
                     break
                 new_cases_line =re.findall("^.*جديدة.*$",tweet.full_text,re.MULTILINE)[0]
@@ -153,7 +152,9 @@ def arabicMonthToNum(month):
 
 
 def main():
-    api = TwitterAPI(config.twitter_consumer_key,config.twitter_consumer_secret)
+    twitter_consumer_key = os.getenv('TWITTER_CONSUMER_KEY') or config.twitter_consumer_key
+    twitter_consumer_secret = os.getenv('TWITTER_CONSUMER_SECRET') or config.twitter_consumer_secret
+    api = TwitterAPI(twitter_consumer_key,twitter_consumer_secret)
     Algeria(api).to_csv()
 
 
