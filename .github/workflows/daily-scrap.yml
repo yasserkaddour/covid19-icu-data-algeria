@@ -1,30 +1,30 @@
 name: daily-scrap
     
-    on:
-      schedule:
-        - cron: "0 0 * * *" #runs at 00:00 UTC everyday
-      workflow_dispatch:
-    
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-    
-        steps:
-          - name: checkout repo content
-            uses: actions/checkout@v2 # checkout the repository content to github runner.
-          - name: setup python
-            uses: actions/setup-python@v2
-            with:
-              python-version: 3.8 #install the python needed
-          - name: execute py script # run the run.py to get the latest data
-            run: |
-              python algeria.py
-            env:
-              TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
-              TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
-          - name: Create Pull Request
-            uses: peter-evans/create-pull-request@v3
-              with:
-                commit-message: Daily update
-                delete-branch: true
-                title: Daily update
+on:
+  schedule:
+    - cron: "0 0 * * *" #runs at 00:00 UTC everyday
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content to github runner.
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8 #install the python needed
+      - name: execute py script # run the run.py to get the latest data
+        run: |
+          python algeria.py
+        env:
+          TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
+          TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+          with:
+            commit-message: Daily update
+            delete-branch: true
+            title: Daily update
