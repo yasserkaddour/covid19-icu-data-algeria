@@ -16,8 +16,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8 #install the python needed
-      - name: execute py script # run the run.py to get the latest data
+      - name: execute script # run the run.py to get the latest data
         run: |
+          pip install -r requirement.txt
           python algeria.py
         env:
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
