@@ -18,7 +18,7 @@ jobs:
           python-version: 3.8 #install the python needed
       - name: execute script # run the run.py to get the latest data
         run: |
-          pip install -r requirement.txt
+          pip install -r requirements.txt
           python algeria.py
         env:
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
