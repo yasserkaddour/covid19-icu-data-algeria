@@ -10,10 +10,10 @@ import re
 import tweepy
 
 try:
-    import config
+    from config import TWITTER_CONSUMER_KEY,TWITTER_CONSUMER_SECRET
 except ImportError:
-    config.TWITTER_CONSUMER_KEY = os.getenv('TWITTER_CONSUMER_KEY')
-    config.TWITTER_CONSUMER_SECRET = os.getenv('TWITTER_CONSUMER_SECRET')
+    TWITTER_CONSUMER_KEY = os.getenv('TWITTER_CONSUMER_KEY')
+    TWITTER_CONSUMER_SECRET = os.getenv('TWITTER_CONSUMER_SECRET')
 
 class TwitterAPI:
 
@@ -157,7 +157,7 @@ def arabicMonthToNum(month):
 
 
 def main():
-    api = TwitterAPI(config.TWITTER_CONSUMER_KEY,config.TWITTER_CONSUMER_SECRET)
+    api = TwitterAPI(TWITTER_CONSUMER_KEY,TWITTER_CONSUMER_SECRET)
     Algeria(api).to_csv()
 
 
