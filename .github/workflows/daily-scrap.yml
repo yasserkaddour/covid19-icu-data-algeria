@@ -23,14 +23,14 @@ jobs:
         id: scrap
         run: |
           python algeria.py
-          echo ::set-output name=pr_title::"$(date +%Y-%m-%d) automatic updates"
+          echo "::set-output name=msg::$(date +%Y-%m-%d) automatic updates"
         env:
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
           TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: ${{ steps.scrap.outputs.pr_title }}
+          commit-message: ${{ steps.scrap.outputs.msg }}
           delete-branch: true
-          title: ${{ steps.scrap.outputs.pr_title }}
-          body: ${{ steps.scrap.outputs.pr_title }}
+          title: ${{ steps.scrap.outputs.msg }}
+          body: ${{ steps.scrap.outputs.msg }}
