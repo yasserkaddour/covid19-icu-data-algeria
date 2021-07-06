@@ -22,7 +22,7 @@ jobs:
       - name: Scrap new tweets
         run: |
           python algeria.py
-          echo ::set-output name=pr_title::"$(date +%d-%m-%Y) updates"
+          echo ::set-output name=pr_title::"$(date +%Y-%m-%d) updates"
         env:
           TWITTER_CONSUMER_KEY: ${{ secrets.TWITTER_CONSUMER_KEY }}
           TWITTER_CONSUMER_SECRET: ${{ secrets.TWITTER_CONSUMER_SECRET }}
