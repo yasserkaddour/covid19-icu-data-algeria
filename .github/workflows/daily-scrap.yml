@@ -32,5 +32,5 @@ jobs:
         with:
           commit-message: ${{ steps.scrap.outputs.pr_title }}
           delete-branch: true
-          title: ${{ steps.vars.outputs.pr_title }}
+          title: ${{ steps.scrap.outputs.pr_title }}
           body: ${{ steps.scrap.outputs.pr_title }}
