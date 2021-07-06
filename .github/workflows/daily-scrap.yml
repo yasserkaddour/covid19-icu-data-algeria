@@ -34,3 +34,4 @@ jobs:
           delete-branch: true
           title: ${{ steps.scrap.outputs.msg }}
           body: ${{ steps.scrap.outputs.msg }}
+          author: GitHub <noreply@github.com>
