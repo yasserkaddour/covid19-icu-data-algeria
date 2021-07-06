@@ -9,7 +9,7 @@ recoveries and deaths. The crucial data about ICUs occupancy was not readily ava
 
 This script scrap daily Covid-19 data from the Twitter feed of [the Algerian Ministry of Health](https://twitter.com/Sante_Gouv_dz) and save them in a CSV file.
 
-You need `twitter_consumer_key` and `twitter_consumer_secret` setup in a `config.py` file to run.
+You need `TWITTER_CONSUMER_KEY` and `TWITTER_CONSUMER_SECRET` setup in a `config.py` file or as environment variable to run.
 
 ## The data
 The data scraped is saved in `algeria-covid19-icu-data.csv`, you will find the date, the number of new cases, the number of recoveries, the number of deaths, the number of people in ICUs, the complete copy of the tweet and the link to the original tweet. I removed duplicate tweets and corrected two obvious mistakes. There are some days in which the data is missing, I plan on adding them later from other sources like the official [WHO publication for Algeria](https://www.afro.who.int/fr/countries/publications?country=980).
