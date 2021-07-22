@@ -35,3 +35,5 @@ jobs:
           title: ${{ steps.scrap.outputs.msg }}
           body: ${{ steps.scrap.outputs.msg }}
           author: GitHub <noreply@github.com>
+          assignees: yasserkaddour
+          reviewers: yasserkaddour
