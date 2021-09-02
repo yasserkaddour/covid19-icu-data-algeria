@@ -115,7 +115,7 @@ class Algeria(TwitterCollectorBase):
             match2 = re.search(r"في العناية المركز", tweet.full_text)
             if match and match2:
                 dt_match = re.search(r"(\d{1,2})\s*([ء-ي]+)\s*(202\d)", tweet.full_text)
-                dt = dt_match.group(3)+"-"+arabicMonthToNum(dt_match.group(2))+"-"+dt_match.group(1)
+                dt = dt_match.group(3)+"-"+arabicMonthToNum(dt_match.group(2))+"-"+dt_match.group(1).zfill(2)
                 if self.stop_search(dt):
                     break
                 new_cases_line =re.findall("^.*جديدة.*$",tweet.full_text,re.MULTILINE)[0]
