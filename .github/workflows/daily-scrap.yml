@@ -31,7 +31,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: ${{ steps.scrap.outputs.msg }}
-          delete-branch: true
+          delete-branch: false
           title: ${{ steps.scrap.outputs.msg }}
           body: ${{ steps.scrap.outputs.msg }}
           author: GitHub <noreply@github.com>
