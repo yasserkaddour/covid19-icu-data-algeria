@@ -114,7 +114,7 @@ class Algeria(TwitterCollectorBase):
             match = re.search(r"مؤشرات الترصد لوباء كوفيد-19", tweet.full_text) or re.search(r"حصيلة وباء كورونا كوفيد-19 ليوم", tweet.full_text)
             match2 = re.search(r"في العناية المركز", tweet.full_text)
             if match and match2:
-                dt_match = re.search(r"(\d{1,2})\s*([ء-ي]+)\s*(202\d)", tweet.full_text)
+                dt_match = re.search(r"(\d{1,2})\s*([ء-ي]+)\s*[ء-ي]*(202\d)", tweet.full_text)
                 dt = dt_match.group(3)+"-"+arabicMonthToNum(dt_match.group(2))+"-"+dt_match.group(1).zfill(2)
                 if self.stop_search(dt):
                     break
