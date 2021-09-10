@@ -1,11 +1,18 @@
-# COVID-19 Data with daily ICUs occupancy for Algeria
+# COVID-19 Data with daily ICUs occupancy for Algeria 🇩🇿
 [![Data](https://img.shields.io/badge/public-data-purple)](public/data/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-blue.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Open Source Love png3](https://badges.frapsoft.com/os/v3/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
 
+
+
 The Algerian ministry of Health publish little Covid-19 data, vaccination and testing rate are unknown.
 However, they do publish daily **number of people in ICUs** in addition to the number of new cases,
 recoveries and deaths. The crucial data about ICUs occupancy was not readily available in a compiled format until now.
+
+🎉 **This data compiled is now used to feed the [Our World in Data](https://ourworldindata.org/explorers/coronavirus-data-explorer?zoomToSelection=true&time=2020-03-01..latest&pickerSort=asc&pickerMetric=location&Metric=ICU+patients&Interval=7-day+rolling+average&Relative+to+Population=false&Align+outbreaks=false&country=~DZA) covid-19 dataset.** 🎉
+![Our World in Data feature the number of COVID-19 patients in intensive care (ICU) in Algeria 🇩🇿 ](https://pbs.twimg.com/media/E6U8ymMWQAcf_KK?format=png)
+
+## The script
 
 This script scrap daily Covid-19 data from the Twitter feed of [the Algerian Ministry of Health](https://twitter.com/Sante_Gouv_dz) and save them in a CSV file.
 
