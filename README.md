@@ -9,7 +9,7 @@ The Algerian ministry of Health publish little Covid-19 data, vaccination and te
 However, they do publish daily **number of people in ICUs** in addition to the number of new cases,
 recoveries and deaths. The crucial data about ICUs occupancy was not readily available in a compiled format until now.
 
-🎉 **This data compiled is now used to feed the [Our World in Data](https://ourworldindata.org/explorers/coronavirus-data-explorer?zoomToSelection=true&time=2020-03-01..latest&pickerSort=asc&pickerMetric=location&Metric=ICU+patients&Interval=7-day+rolling+average&Relative+to+Population=false&Align+outbreaks=false&country=~DZA) covid-19 dataset.** 🎉
+🎉 **This compiled data is now used to feed the [Our World in Data](https://ourworldindata.org/explorers/coronavirus-data-explorer?zoomToSelection=true&time=2020-03-01..latest&pickerSort=asc&pickerMetric=location&Metric=ICU+patients&Interval=7-day+rolling+average&Relative+to+Population=false&Align+outbreaks=false&country=~DZA) covid-19 dataset.** 🎉
 ![Our World in Data feature the number of COVID-19 patients in intensive care (ICU) in Algeria 🇩🇿 ](https://pbs.twimg.com/media/E6U8ymMWQAcf_KK?format=png)
 
 ## The script
