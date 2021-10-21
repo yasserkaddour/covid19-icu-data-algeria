@@ -1,4 +1,4 @@
-# A large portion of the code came from the COVID-19 Dataset project by Our World in Data 
+# A large portion of the code came from the COVID-19 Dataset project by Our World in Data
 # https://github.com/owid/covid-19-data/tree/master/scripts/scripts/vaccinations/src/vax/manual/twitter
 # Mainly contributed by Lucas Rodés-Guirao https://github.com/lucasrodes
 # The code is under completely open access under the Creative Commons BY license
@@ -10,10 +10,11 @@ import re
 import tweepy
 
 try:
-    from config import TWITTER_CONSUMER_KEY,TWITTER_CONSUMER_SECRET
+    from config import TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET
 except ImportError:
     TWITTER_CONSUMER_KEY = os.getenv('TWITTER_CONSUMER_KEY')
     TWITTER_CONSUMER_SECRET = os.getenv('TWITTER_CONSUMER_SECRET')
+
 
 class TwitterAPI:
 
@@ -25,17 +26,17 @@ class TwitterAPI:
         return tweepy.API(auth)
 
     def get_tweets(self, username, num_tweets=30):
-        tweets = tweepy.Cursor(self._api.user_timeline ,
-                   screen_name=username, 
+        tweets = tweepy.Cursor(self._api.user_timeline,
+                               screen_name=username,
                                include_rts=False,
-            tweet_mode='extended',
-            exclude_replies=False,
-        ).items(num_tweets)
+                               tweet_mode='extended',
+                               exclude_replies=False,
+                               ).items(num_tweets)
         return tweets
 
 
 class TwitterCollectorBase:
-    
+
     def __init__(self, api, username: str, location: str, num_tweets=100):
         self.username = username
         self.location = location
@@ -49,7 +50,8 @@ class TwitterCollectorBase:
             if paths is not None:
                 return paths.tmp_vax_out_proposal(self.location)
             else:
-                raise AttributeError("Either specify attribute `paths` or method argument `output_path`")
+                raise AttributeError(
+                    "Either specify attribute `paths` or method argument `output_path`")
 
     def _get_current_data(self):
         if os.path.isfile(self.output_path):
@@ -111,21 +113,35 @@ class Algeria(TwitterCollectorBase):
     def _propose_df(self):
         data = []
         for tweet in self.tweets:
-            match = re.search(r"مؤشرات الترصد لوباء كوفيد-19", tweet.full_text) or re.search(r"حصيلة وباء كورونا كوفيد-19 ليوم", tweet.full_text)
+            match = re.search(r"مؤشرات الترصد لوباء كوفيد-19", tweet.full_text) or re.search(
+                r"حصيلة وباء كورونا كوفيد-19 ليوم", tweet.full_text)
             match2 = re.search(r"في العناية المركز", tweet.full_text)
             if match and match2:
-                dt_match = re.search(r"(\d{1,2})\s*([ء-ي]+)\s*[ء-ي]*(202\d)", tweet.full_text)
-                dt = dt_match.group(3)+"-"+arabicMonthToNum(dt_match.group(2))+"-"+dt_match.group(1).zfill(2)
+                dt_match = re.search(
+                    r"(\d{1,2})\s*([ء-ي]+)\s*[ء-ي]*(202\d)", tweet.full_text)
+                dt = dt_match.group(
+                    3)+"-"+arabicMonthToNum(dt_match.group(2))+"-"+dt_match.group(1).zfill(2)
                 if self.stop_search(dt):
                     break
-                new_cases_line =re.findall("^.*جديدة.*$",tweet.full_text,re.MULTILINE)[0]
-                new_cases = int(re.search(r'\d+', new_cases_line).group(0)) 
-                recoveries_line =re.findall("^.*للشفاء.*$",tweet.full_text,re.MULTILINE)[0]
-                recoveries = int(re.search(r'\d+', recoveries_line).group(0)) 
-                in_icu_line =re.findall("^.*في العناية المركز.*$",tweet.full_text,re.MULTILINE)[0]
-                in_icu = int(re.search(r'\d+', in_icu_line).group(0)) 
-                new_deaths_line =re.findall("^.*وفيات.*$",tweet.full_text,re.MULTILINE)[0]
-                new_deaths = int(re.search(r'\d+', new_deaths_line).group(0)) 
+                new_cases_line = re.findall(
+                    "^.*جديدة.*$", tweet.full_text, re.MULTILINE)[0]
+                new_cases = int(re.search(r'\d+', new_cases_line).group(0))
+                recoveries_line = re.findall(
+                    "^.*للشفاء.*$", tweet.full_text, re.MULTILINE)[0]
+                recoveries = int(re.search(r'\d+', recoveries_line).group(0))
+                in_icu_line = re.findall(
+                    "^.*في العناية المركز.*$", tweet.full_text, re.MULTILINE)[0]
+                in_icu = int(re.search(r'\d+', in_icu_line).group(0))
+                new_deaths_line = re.findall(
+                    "^.*وفيات.*$", tweet.full_text, re.MULTILINE)
+                if(new_deaths_line):
+                    new_deaths = int(
+                        re.search(r'\d+', new_deaths_line[0]).group(0))
+                else:
+                    if(re.findall(
+                            "^.*وفاة واحدة.*$", tweet.full_text, re.MULTILINE)[0]):
+                        new_deaths = 1
+
                 data.append({
                     "date": dt,
                     "new_cases": new_cases,
@@ -138,28 +154,29 @@ class Algeria(TwitterCollectorBase):
         df = pd.DataFrame(data)
         return df
 
+
 def arabicMonthToNum(month):
     return {
-            'جانفي' : "01",
-            'فيفري' : "02",
-            'مارس' : "03",
-            'أفريل' : "04",
-            'ماي' : "05",
-            'جوان' : "06",
-            'جويلية' : "07",
-            'اوت' : "08",
-            'أوت' : "08",
-            'سبتمبر' : "09", 
-            'أكتوبر' : "10",
-            'اكتوبر' : "10",
-            'كتوبر' : "10",
-            'نوفمبر' : "11",
-            'ديسمبر' : "12"
+        'جانفي': "01",
+        'فيفري': "02",
+        'مارس': "03",
+        'أفريل': "04",
+        'ماي': "05",
+        'جوان': "06",
+        'جويلية': "07",
+        'اوت': "08",
+        'أوت': "08",
+        'سبتمبر': "09",
+        'أكتوبر': "10",
+        'اكتوبر': "10",
+        'كتوبر': "10",
+        'نوفمبر': "11",
+        'ديسمبر': "12"
     }[month]
 
 
 def main():
-    api = TwitterAPI(TWITTER_CONSUMER_KEY,TWITTER_CONSUMER_SECRET)
+    api = TwitterAPI(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
     Algeria(api).to_csv()
 
 
