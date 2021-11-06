@@ -1,4 +1,4 @@
-# COVID-19 Data with daily ICUs occupancy for Algeria🇩🇿
+# Covid-19 data with daily ICUs occupancy for Algeria🇩🇿
 [![Data](https://img.shields.io/badge/public-data-purple)](public/data/)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-blue.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Open Source Love png3](https://badges.frapsoft.com/os/v3/open-source.png?v=103)](https://github.com/ellerbrock/open-source-badges/)
