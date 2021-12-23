@@ -116,7 +116,7 @@ class Algeria(TwitterCollectorBase):
             match = re.search(r"مؤشرات الترصد لوباء كوفيد-19", tweet.full_text) or re.search(
                 r"حصيلة وباء كورونا كوفيد-19 ليوم", tweet.full_text) or re.search(
                 r"نوافيكم بالحصيلة الكاملة", tweet.full_text)
-            match2 = re.search(r"في العناية المركز", tweet.full_text)
+            match2 = re.search(r"العناية المركز", tweet.full_text)
             if match and match2:
                 dt_match = re.search(
                     r"(\d{1,2})\s*([ء-ي]+)\s*[ء-ي]*(202\d)", tweet.full_text)
@@ -131,7 +131,7 @@ class Algeria(TwitterCollectorBase):
                     "^.*للشفاء.*$", tweet.full_text, re.MULTILINE)[0]
                 recoveries = int(re.search(r'\d+', recoveries_line).group(0))
                 in_icu_line = re.findall(
-                    "^.*في العناية المركز.*$", tweet.full_text, re.MULTILINE)[0]
+                    "^.*العناية المركز.*$", tweet.full_text, re.MULTILINE)[0]
                 in_icu = int(re.search(r'\d+', in_icu_line).group(0))
                 new_deaths_line = re.findall(
                     "^.*وفيات.*$", tweet.full_text, re.MULTILINE)
