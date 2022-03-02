@@ -115,7 +115,7 @@ class Algeria(TwitterCollectorBase):
         for tweet in self.tweets:
             match = re.search(r"مؤشرات الترصد لوباء كوفيد-19", tweet.full_text) or re.search(
                 r"حصيلة وباء كورونا كوفيد-19 ليوم", tweet.full_text) or re.search(
-                r"نوافيكم بالحصيلة الكاملة", tweet.full_text)
+                r" الحصيلة الكاملة", tweet.full_text)
             match2 = re.search(r"العناية المركز", tweet.full_text)
             if match and match2:
                 dt_match = re.search(
