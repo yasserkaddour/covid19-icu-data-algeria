@@ -143,7 +143,7 @@ class Algeria(TwitterCollectorBase):
                 if new_deaths_line:
                     new_deaths = int(re.search(r"\d+", new_deaths_line[0]).group(0))
                 else:
-                    if re.findall("^.*وفاة واحدة.*$", tweet.full_text, re.MULTILINE)[0]:
+                    if re.findall("^.*وفاة.*$", tweet.full_text, re.MULTILINE)[0]:
                         new_deaths = 1
 
                 data.append(
