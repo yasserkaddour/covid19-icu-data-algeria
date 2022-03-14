@@ -138,7 +138,7 @@ class Algeria(TwitterCollectorBase):
                 )[0]
                 in_icu = int(re.search(r"\d+", in_icu_line).group(0))
                 new_deaths_line = re.findall(
-                    "^.*وفيات.*$", tweet.full_text, re.MULTILINE
+                    "^.*وف.*$", tweet.full_text, re.MULTILINE
                 )
                 if new_deaths_line:
                     new_deaths = int(re.search(r"\d+", new_deaths_line[0]).group(0))
